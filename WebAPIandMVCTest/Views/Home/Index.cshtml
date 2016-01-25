@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(function () {
+        $('#get1').click(function () {
+            $.get('@Url.Action("RequestHelper", "Home")', { method: 'get', ReuestUrl :'/api/Test'}, function (data) {
+                alert(data);
+            });
+        });
+        $('#get2').click(function () {
+            $.get('@Url.Action("RequestHelper", "Home")', { method: 'get', ReuestUrl: '/api/Test?param1=123' }, function (data) {
+                alert(data);
+            });
+        });
+        $('#get3').click(function () {
+            $.get('@Url.Action("RequestHelper", "Home")', { method: 'get', ReuestUrl: '/api/Test?param1=123&param2=12345' }, function (data) {
+                alert(data);
+            });
+        });
+
+        $('#post1').click(function () {
+            $.post('@Url.Action("RequestHelper", "Home")', { param1: 333,method: 'post', ReuestUrl: '/api/Test/HehePost' }, function (data) {
+                alert(data);
+            });
+        });
+        $('#post2').click(function () {
+            $.post('@Url.Action("RequestHelper", "Home")', { method: 'post', ReuestUrl: '/api/Test/Post2' }, function (data) {
+                alert(data);
+            });
+        });
+        $('#post3').click(function () {
+            $.post('@Url.Action("RequestHelper", "Home")', { method: 'post', ReuestUrl: '/api/Test/Post3' }, function (data) {
+                alert(data);
+            });
+        });
+
+        $('#put').click(function () {
+            alert('');
+            $.ajax({
+                url: "@Url.Action("RequestHelper", "Home")",
+                type: "POST",
+                data: { '': "{Name: '12345', age: 22, Major: 'English'}", method: 'Post', ReuestUrl: '/api/Test' },
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        });
+        $('#delete').click(function () {
+
+        });
+    })
+</script>
+
+
+<button id="get1">Get</button><br />
+<button id="get2">Get一个参数</button><br />
+<button id="get3">Get两个参数</button><br />
+
+<button id="post1">Post 一个参数</button><br />
+<button id="post2">Post 两个参数</button><br />
+<button id="post3">Post 复杂对象</button><br />
+
+<button id="put">Put 一个参数，一个复杂对象</button><br />
+
+<button id="delete">Delete 一个参数</button><br />
